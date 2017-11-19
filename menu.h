@@ -113,7 +113,7 @@ void menu()
 
 										case 4:
 											numero = pedirDato();
-											eliminarElementoLista(lista, numero);
+											eliminarElementoLista(lista, listaFin, numero);
 										    PAUSE;
 											break;
 
@@ -129,7 +129,7 @@ void menu()
 											break;;
 
 										case 6:
-											editarElementoLista(lista, ordenada);
+											editarElementoLista(lista, listaFin, ordenada);
 										    PAUSE;
 											break;
 

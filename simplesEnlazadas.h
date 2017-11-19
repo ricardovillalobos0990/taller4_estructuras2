@@ -19,9 +19,9 @@ void insertarElementoDespues(Nodo* &, Nodo* &, Nodo *&);
 void insertarElementoAntes(Nodo* &, Nodo *&);
 void mostrarElementosLista(Nodo* );
 int BuscarElementosLista(Nodo* , int);
-void eliminarElementoLista(Nodo* &, int);
+void eliminarElementoLista(Nodo* &, Nodo* &, int);
 void eliminarEstructura(Nodo* &);
-void editarElementoLista(Nodo* &, int);
+void editarElementoLista(Nodo* &, Nodo* &, int);
 void insertarElementoListaOrdenada(int, Nodo* &);
 void editarElementoListaOrdenada(Nodo* &);
 int pedirDato();
@@ -226,7 +226,7 @@ int buscarElementosLista(Nodo* lista, int numero)
 /**
  * Elimina un elemento de la lista, el que el usuario haya elegido
  */
-void eliminarElementoLista(Nodo* &lista, int numero)
+void eliminarElementoLista(Nodo* &lista, Nodo* &listaFin, int numero)
 {
 	Nodo* aux = lista;
 	Nodo* aux2 = NULL;
@@ -252,6 +252,10 @@ void eliminarElementoLista(Nodo* &lista, int numero)
 				else
 				{
 					aux2->siguiente = aux->siguiente;
+					if(aux->siguiente == NULL)
+					{
+						listaFin = aux2;
+					}
 				}
 				free(aux);
 				break;
@@ -292,7 +296,7 @@ void eliminarEstructura(Nodo* &lista)
  * Editar un elemento de la lista, el que el usuario elija
  * el parametro ordenada, es para comprobar si se va a editar una lista ordenada o no
  */
-void editarElementoLista(Nodo* &lista, int ordenada)
+void editarElementoLista(Nodo* &lista, Nodo* &listaFin, int ordenada)
 {
 	Nodo* aux = lista;
 
@@ -327,7 +331,7 @@ void editarElementoLista(Nodo* &lista, int ordenada)
 					nuevoDato = pedirDato();
 					if(ordenada == 1) //Si la lista es ordenada
 					{
-						eliminarElementoLista(lista, numero);
+						eliminarElementoLista(lista, listaFin, numero);
 						insertarElementoListaOrdenada(nuevoDato, lista);
 					}
 					else
