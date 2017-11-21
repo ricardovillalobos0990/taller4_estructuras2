@@ -165,6 +165,7 @@ void mostrarElementosListaDobleCircular(NodoDoble* lista)
     NodoDoble* aux = lista;
     NodoDoble* condicion = lista;
     int numero = 0;
+    int saltos = 0;
 
 	if(aux == NULL)
 	{
@@ -174,28 +175,46 @@ void mostrarElementosListaDobleCircular(NodoDoble* lista)
 	{
         printf("\n1.Mostrar del principio al final");
         printf("\n2.Mostrar del final al principio");
+        printf("\n3.Recorrer hasta n");
         printf("\nEscoger opcion: ");
         getchar();
         scanf("%d", &numero);
-        if(numero != 1)
+
+        if(numero == 3)
         {
-            aux = lista->anterior;
-            condicion = lista->anterior;
+        	printf("\nCantidad de saltos a recorrer: ");
+        	scanf("%d", &saltos);
+
+        	for(int i = 1; i < saltos; i++)
+        	{
+        		aux = aux->siguiente;
+        	}
+
+
+        		printf("Valor final: %d, posicion en memoria: %p", aux->dato, aux);
         }
-		do
-		{
-			printf("\n%d", aux->dato);
-
-			if(numero == 1)
+        else
+        {
+        	if(numero != 1)
+	        {
+	            aux = lista->anterior;
+	            condicion = lista->anterior;
+	        }
+			do
 			{
-				aux = aux->siguiente;
-			}
-			else
-			{
-				aux = aux->anterior;
-			}
+				printf("\n%d", aux->dato);
 
-		}while(aux != condicion);
+				if(numero == 1)
+				{
+					aux = aux->siguiente;
+				}
+				else
+				{
+					aux = aux->anterior;
+				}
+
+			}while(aux != condicion);
+        }
 	}
 }
 
